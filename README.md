@@ -1,6 +1,6 @@
 # IAPSO_CTDO2_processing
 
-## ctdproc_steps.txt
+## ctdproc_steps.md
 
 Compare the content (and ordering) of the processing steps applied to CTDO2 data
 
