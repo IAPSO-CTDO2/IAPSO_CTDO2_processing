@@ -4,7 +4,7 @@
 
 Compare the content (and ordering) of the processing steps applied to CTDO2 data
 
-ctdproc_steps.txt contains a list of data QC, processing, and correction (calibration customization) steps, abstracted to a comparable form (as much as possible). It may also contain notes on the order in which they are applied if this is iterative or varies. 
+ctdproc_steps.md contains a list of data QC and processing steps, abstracted (as much as possible) to a form that can be compared across different groups and procedures. It may optionally contain steps for corrections and calibration as well. It may also contain notes on the order in which steps are applied if this is iterative or varies. 
 
 ## documentation/
 
