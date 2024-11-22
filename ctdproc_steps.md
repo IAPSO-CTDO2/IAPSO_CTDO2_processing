@@ -34,12 +34,12 @@ iv) Apply adjustments to conductivity (not salinity). First finalise CTD pressur
 
 ### Oxygen (electrochemical sensors)
 3) Correction to oxygen sensor calibration
-i) If SBE oxygen sensor hysteresis response correction was applied in SBE data conversion, compare upcast CTD oxygen sensor data with bottle oxygens. If not, match the down- and upcast data by pressure or neutral or potential density and compare these downcast CTD sensor values with the bottle oxygens. If potential density is used the reference should not be more than 500 dbar from the bottle stops to which it is applied. In low density gradient regions use pressure matching instead. /
-ii) Use data from as many stations as possible to determine a nonlinear fit minimising the squared differences between bottle data and each CTD sensor data. /
-a) Owens and Millard equation ... /
-b) SBE suggested equation ... /
-c) ODF ... /
-d) PMEL ... /
+i) If SBE oxygen sensor hysteresis response correction was applied in SBE data conversion, compare upcast CTD oxygen sensor data with bottle oxygens. If not, match the down- and upcast data by pressure or neutral or potential density and compare these downcast CTD sensor values with the bottle oxygens. If potential density is used the reference should not be more than 500 dbar from the bottle stops to which it is applied. In low density gradient regions use pressure matching instead. \
+ii) Use data from as many stations as possible to determine a nonlinear fit minimising the squared differences between bottle data and each CTD sensor data. \
+a) Owens and Millard equation ... \
+b) SBE suggested equation ... \
+c) ODF ... \
+d) PMEL ... \
 iii) residuals after calibration should be small (< 2 umol/kg) and randomly distributed as far as station number, pressure, T, and O
 
 ### Oxygen (optodes)
