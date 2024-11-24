@@ -1,6 +1,7 @@
 # Source/version: 
-McTaggart et al., 2010, Notes on CTD/O2 Data Acquisition and Processing Using Sea-Bird Hardware and Software (as available).
-Uchida et al., 2010, CTD Oxygen Sensor Calibration Procedures. 
+McTaggart et al., 2010, Notes on CTD/O2 Data Acquisition and Processing Using Sea-Bird Hardware and Software (as available). \
+Uchida et al., 2010, CTD Oxygen Sensor Calibration Procedures. \
+Note: Draft. "..." indicates details to be filled in. 
 
 ## A) Data quality control (primary/1QC)
 1) After each cast examine differences between primary and secondary sensors over a homogenous part of the water column
