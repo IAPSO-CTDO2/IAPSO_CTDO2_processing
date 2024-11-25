@@ -43,7 +43,5 @@ c) ODF ... \
 d) PMEL ... \
 iii) residuals after calibration should be small (< 2 umol/kg) and randomly distributed as far as station number, pressure, T, and O
 
-### Oxygen (optodes)
-3) Correction to oxygen sensor calibration
-...
+
 
