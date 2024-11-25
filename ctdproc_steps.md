@@ -1,4 +1,5 @@
 # Source/version: 
+C Langdon oxygen processing
 McTaggart et al., 2010, Notes on CTD/O2 Data Acquisition and Processing Using Sea-Bird Hardware and Software (as available). \
 Uchida et al., 2010, CTD Oxygen Sensor Calibration Procedures. \
 Note: Draft. "..." indicates details to be filled in. 
