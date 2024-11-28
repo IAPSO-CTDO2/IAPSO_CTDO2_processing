@@ -1,5 +1,10 @@
 # IAPSO_CTDO2_processing
 
+Getting started: 
+- Create your own branch (probably from the default, go_ship_hydroman_2010)
+- Modify ctdproc_steps.md, including the version/who uses it/source information at the top
+- Optionally upload or add links to your documentation and/or code
+
 ## ctdproc_steps.md
 
 Compare the content (and ordering) of the processing steps applied to CTDO2 data
