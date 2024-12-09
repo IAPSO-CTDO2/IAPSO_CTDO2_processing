@@ -3,7 +3,7 @@
 Getting started: 
 - Create your own branch (probably from the default, go_ship_hydroman_2010)
 - Modify ctdproc_steps.md, including the version/who uses it/source information at the top
-- Optionally upload or add links to your documentation and/or code
+- Optionally upload or add links to your code and/or documentation (and remove from documentation/ any files that are not relevant to your procedure)
 
 ## ctdproc_steps.md
 
