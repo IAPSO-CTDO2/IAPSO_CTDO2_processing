@@ -1,49 +1,40 @@
 # Source/version: 
-McTaggart et al., 2010, Notes on CTD/O2 Data Acquisition and Processing Using Sea-Bird Hardware and Software (as available). \
-Uchida et al., 2010, CTD Oxygen Sensor Calibration Procedures. \
-Note: Draft. "..." indicates details to be filled in. 
+ICES WGOH CTD Intercomparison Project: Methodology Document
+(Draft translation from .pdf by YLF, to be edited by KS)
 
 ## A) Data quality control (primary/1QC)
-1) After each cast examine differences between primary and secondary sensors over a homogenous part of the water column
-2) Compare SBE35 data with CTD temperature at bottle stops
-3) Examine pre- and post-cast on-deck pressure over the course of the cruise
-4) Compare data from most recent cast to previous casts
-5) Compare CTD C and O to sample data as they become available
-6) Suspect sensors with drift over 0.002 C (T), 0.005 mS/cm (C), 15 umol/kg (O), 2 dbar (P)
+1) Inspect residuals between two CTD temperatures and two CTD salinities
+2) Inspect residuals between CTD and bottle salinity, use to flag bottle salinity
+3) Inspect residuals between CTD and bottle oxygen, use to flag bottle oxygen
+4) Use ODV to inspect processed (averaged, downcast) data [only after steps in C?] to flag very low salinity (or large sensor-sensor salinity differences) or negative oxygen values. 
+... source document is for post-cruise processing; fill in details for operation/QC on a cruise or othewise ...
 
 ## B) Data processing
-1) SBE Data Conversion (raw to engineering units, outputs scan number, elapsed time, p, t0, t1, c0, c1, oxygen voltage(s), and other [e.g. optical sensor] voltages). Optionally, remove surface soak time at this stage, and apply oxygen sensor hysteresis and time lag corections (using nominal coefficients is not recommended). May correct for oxygen sensor hysteresis at this stage. 
-2) SBE Align CTD
-3) SBE Bottle Summary
-4) SBE Wild Edit
-5) SBE Filter
-6) SBE Cell Thermal Mass
-7) SBE Loop Edit
-8) SBE Derive
-9) SBE Bin Average
-10) SBE Translate
+1) SBE Data Conversion (raw to engineering units, outputs scan number, elapsed time, p, t0, t1, c0, c1, oxygen voltage(s), and other [e.g. optical sensor] voltages). Apply oxygen sensor hysteresis and time lag corections using nominal coefficients from SBE to convert oxygen raw (V) to oxygen (ml/l?).  
+2) SBE Align CTD, using a 3 second lag for oxygen sensor (or, a lag estimated based on the data?). 
+3) SBE Cell Thermal Mass using default parameters. 
+4) SBE Derive
+5) SBE Bin Average
+6) SBE Split the output of SBE Bin Average into down- and upcast
+7) SBE Data Conversion again with Create file types = create bottle file only
+8) SBE Bottle Summary
 
 ## C) Data corrections
 
 ### Pressure, Temperature, Conductivity
-1) Adjust pressure using the deviation of the equilibrated surface pressure (10 minutes after power on) from atmospheric; generally only do this at the start of the cruise
+1) Pressure: no correction
 2) Corrections to T and C calibrations
 i) Use systematic comparisons between sensor data and an independent measure (e.g. SBE35, water sample salinity) \
 ii) Corrections can potentially vary by cast, but usually should be a very few different sets during the cruise, or slowly evolving with shifts only due to fouling or mechanical shock events \
-iii) Apply a viscous heating correction of -0.0006 C to T. Look for a slow linear drift in calibration. If no SBE35 is available, incorporate the pre- and post-cruise calibrations into a linear fit, then apply the value at the cruise midpoint as a single adjustment.  If SBE35 is available, remove pressure dependence of SBE35 vs SBE3+. Examine residual differences for other drifts. \
-iv) Apply adjustments to conductivity (not salinity). First finalise CTD pressure and temperature. Then compare, at bottle closures, a) primary and secondary CTD conductivity, and b) each CTD conductivity with conductivity derived from bottle sample salinity and CTD T and P. Use a) to check for package wake effects. Look for a linear or quadratic fit to conductivity residuals, possibly also including a linear or quadratic pressure dependence, generally of the form C_cor = C + cp2*P^2 + cp1*P + c2*C^2 + c1*C + c0. Outliers are removed iteratively using a standard deviation-based threshold. Regression coefficients should be calculated per-station, but where possible a single set of regression coefficients, possibly including a slow time or station-number dependence, per sensor should be used. Not all the terms will necessarily be used. Either sudden changes in sensor residuals (requiring more than one set of coefficients) or drifts in time may be incorporated. Use deep T-S properties to look out for bottle data issues. Post-cruise laboratory calibrations can be used to check the sensors but bottle data should be used to apply calibrations.  
-
+iii) Over the whole cruise, compare two CTD T sensors, and compare each vs SBE35 data, first as functions of pressure then as functions of time. If mean (?) differences are within the expected accuracy as listed by McTaggart et al., 2010, apply no calibration. \
+iv) Compare and derive adjustments to salinity. Inspect the residuals to identify and flag outliers/bad salinometer values. After excluding these values as well as the top 500 m, for each CTD, calculate a slope as the factor between the sum over samples of CTD x bottle and the sum over samples of CTD x CTD. conductivity (not salinity). This may sometimes be done on a station-by-station basis. \
+v) Apply to data by modifying the coefficients in the XMLCON file(s) according to these slopes, and re-running steps in B.
+ 
 ### Oxygen (electrochemical sensors)
 3) Correction to oxygen sensor calibration
-i) If SBE oxygen sensor hysteresis response correction was applied in SBE data conversion, compare upcast CTD oxygen sensor data with bottle oxygens. If not, match the down- and upcast data by pressure or neutral or potential density and compare these downcast CTD sensor values with the bottle oxygens. If potential density is used the reference should not be more than 500 dbar from the bottle stops to which it is applied. In low density gradient regions use pressure matching instead. \
-ii) Use data from as many stations as possible to determine a nonlinear fit minimising the squared differences between bottle data and each CTD sensor data. \
-a) Owens and Millard equation ... \
-b) SBE suggested equation ... \
-c) ODF ... \
-d) PMEL ... \
-iii) residuals after calibration should be small (< 2 umol/kg) and randomly distributed as far as station number, pressure, T, and O
-
-### Oxygen (optodes)
-3) Correction to oxygen sensor calibration
-...
+i) Convert CTD oxygen to umol/kg (?)\
+ii) For each CTD, compare residuals of Winkler - CTD, as a function of pressure; exclude outlier stations or samples based on inspection (qualitative?)\
+iii) Plot the ratios Winkler/CTD and exclude any additional outlier measurements\
+iv) For each CTD, minimize the residual of the squared differences between Winkler and CTD oxygen by using excel's solver function starting with the SBE default coefficients for SOC (slope), VOffset, and E (pressure correction) [following SBE Application Note AN64-2] to find new coefficients for the conversion from oxygen voltage to engineering units. This may be done for all stations or a group of stations. \
+v) Apply to data by modifying the SOC, VOffset, and E coefficients in XMLCON file(s), and re-running steps in B.
 
