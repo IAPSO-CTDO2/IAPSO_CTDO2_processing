@@ -12,16 +12,40 @@ Note: Draft. "..." indicates details to be filled in.
 6) Suspect sensors with drift over 0.002 C (T), 0.005 mS/cm (C), 15 umol/kg (O), 2 dbar (P)
 
 ## B) Data processing
-1) SBE Data Conversion (raw to engineering units, outputs scan number, elapsed time, p, t0, t1, c0, c1, oxygen voltage(s), and other [e.g. optical sensor] voltages). Optionally, remove surface soak time at this stage, and apply oxygen sensor hysteresis and time lag corections (using nominal coefficients is not recommended). May correct for oxygen sensor hysteresis at this stage. 
-2) SBE Align CTD
-3) SBE Bottle Summary
-4) SBE Wild Edit
-5) SBE Filter
+1) SBE Data Conversion (raw to engineering units, outputs scan number, elapsed time, p, t0, t1, c0, c1, oxygen voltage(s), and other [e.g. optical sensor] voltages).
+   Apply oxygen sensor hysteresis and time lag corections (windows size 2s)
+2+3) SBE Wild edit (x2 consecutively) on CTD data
+   # wildedit_pass1_nstd = 2.0
+   # wildedit_pass2_nstd = 10.0
+   # wildedit_pass2_mindelta = 0.000e+000
+   # wildedit_npoint = 100
+   # wildedit_vars = prDM t090C t190C c0S/m c1S/m
+   # wildedit_excl_bad_scans = yes
+4) SBE Filter on pressure and optical data
+   # filter_low_pass_tc_A = 0.030
+   # filter_low_pass_tc_B = 0.150
+   # filter_low_pass_A_vars = turbWETntu0 spar wetStar
+   # filter_low_pass_B_vars = prDM
+5) SBE Align CTD (2s lag only for O2)
+   # alignctd_adv = sbeox0V 2.000
 6) SBE Cell Thermal Mass
+   # celltm_alpha = 0.0300, 0.0300
+   # celltm_tau = 7.0000, 7.0000
+   # celltm_temp_sensor_use_for_cond = primary, secondary
 7) SBE Loop Edit
-8) SBE Derive
-9) SBE Bin Average
-10) SBE Translate
+   # loopedit_minVelocity = 0.100
+   # loopedit_surfaceSoak: minDepth = 6.0, maxDepth = 25, useDeckPress = 1
+   # loopedit_excl_bad_scans = yes
+8) SBE Derive to compute Salinity, Pot. Temp., Dens., Oxygen (ml/L), Oxygen (umol/kg)
+   # derive_time_window_docdt = seconds: 2
+   # derive_ox_tau_correction = yes
+9) SBE Bin Average on downcast only
+   # binavg_bintype = decibars
+   # binavg_binsize = 1
+   # binavg_excl_bad_scans = yes
+   # binavg_skipover = 0
+   # binavg_omit = 0
+10) SBE Bottle Summary
 
 ## C) Data corrections
 
