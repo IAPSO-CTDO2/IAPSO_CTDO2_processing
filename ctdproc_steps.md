@@ -5,11 +5,7 @@ Note: Draft. "..." indicates details to be filled in.
 
 ## A) Data quality control (primary/1QC)
 1) After each cast examine differences between primary and secondary sensors over a homogenous part of the water column
-2) Compare SBE35 data with CTD temperature at bottle stops
-3) Examine pre- and post-cast on-deck pressure over the course of the cruise
-4) Compare data from most recent cast to previous casts
-5) Compare CTD C and O to sample data as they become available
-6) Suspect sensors with drift over 0.002 C (T), 0.005 mS/cm (C), 15 umol/kg (O), 2 dbar (P)
+2) Suspect sensors with drift over 0.002 C (T), 0.005 mS/cm (C), 15 umol/kg (O), 2 dbar (P)
 
 ## B) Data processing
 1) SBE Data Conversion (raw to engineering units, outputs scan number, elapsed time, p, t0, t1, c0, c1, oxygen voltage(s), and other [e.g. optical sensor] voltages).
@@ -50,12 +46,17 @@ Note: Draft. "..." indicates details to be filled in.
 ## C) Data corrections
 
 ### Pressure, Temperature, Conductivity
-1) Adjust pressure using the deviation of the equilibrated surface pressure (10 minutes after power on) from atmospheric; generally only do this at the start of the cruise
-2) Corrections to T and C calibrations
-i) Use systematic comparisons between sensor data and an independent measure (e.g. SBE35, water sample salinity) \
+We use recently calibrated CTD sensors in pair (1 calibrated at year n, the other at year n-1)
+No correction on T and P (unless significant difference between the pair of CTD)
+Corrections to C calibrations
+i) Use systematic comparisons between sensor data and an independent measure (Autosal water sample salinity) \
 ii) Corrections can potentially vary by cast, but usually should be a very few different sets during the cruise, or slowly evolving with shifts only due to fouling or mechanical shock events \
-iii) Apply a viscous heating correction of -0.0006 C to T. Look for a slow linear drift in calibration. If no SBE35 is available, incorporate the pre- and post-cruise calibrations into a linear fit, then apply the value at the cruise midpoint as a single adjustment.  If SBE35 is available, remove pressure dependence of SBE35 vs SBE3+. Examine residual differences for other drifts. \
-iv) Apply adjustments to conductivity (not salinity). First finalise CTD pressure and temperature. Then compare, at bottle closures, a) primary and secondary CTD conductivity, and b) each CTD conductivity with conductivity derived from bottle sample salinity and CTD T and P. Use a) to check for package wake effects. Look for a linear or quadratic fit to conductivity residuals, possibly also including a linear or quadratic pressure dependence, generally of the form C_cor = C + cp2*P^2 + cp1*P + c2*C^2 + c1*C + c0. Outliers are removed iteratively using a standard deviation-based threshold. Regression coefficients should be calculated per-station, but where possible a single set of regression coefficients, possibly including a slow time or station-number dependence, per sensor should be used. Not all the terms will necessarily be used. Either sudden changes in sensor residuals (requiring more than one set of coefficients) or drifts in time may be incorporated. Use deep T-S properties to look out for bottle data issues. Post-cruise laboratory calibrations can be used to check the sensors but bottle data should be used to apply calibrations.  
+iii) First, Autosal salinities are plotted against bottle salinities and the presence of outliers.
+iv) A subsample of the salinities to be used is determined by using a standard Interquartile \
+range (IQR) method excluding data outside the interval [Q1-1.5*(Q3-Q1) ; Q3+1.5*(Q3-Q1)] with Q1 and Q3 the 25th and 75th percentile of the data distribution. \
+v) The distribution of Autosal versus CTD salinity is examined to evaluate if significant discrepencies are found for CTD1 or CTD2. \
+vi) Salinity differences are also plotted against time, to check that no temporal drift was present. If yes, the ratio coefficient used is allow to evolve with time (based on a 5-day moving average) \
+vii) The next step is the determination of the slope coefficient. For a set of samples, the slope coefficient is calculated as : (https://www.seabird.com/cms-portals/seabird_com/cms/documents/training/Module10_DataAccuracyFieldCals.pdf) \
 
 ### Oxygen (electrochemical sensors)
 3) Correction to oxygen sensor calibration
