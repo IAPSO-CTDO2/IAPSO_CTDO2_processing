@@ -57,18 +57,12 @@ range (IQR) method excluding data outside the interval [Q1-1.5*(Q3-Q1) ; Q3+1.5*
 v) The distribution of Autosal versus CTD salinity is examined to evaluate if significant discrepencies are found for CTD1 or CTD2. \
 vi) Salinity differences are also plotted against time, to check that no temporal drift was present. If yes, the ratio coefficient used is allow to evolve with time (based on a 5-day moving average) \
 vii) The next step is the determination of the slope coefficient. For a set of samples, the slope coefficient is calculated as : (https://www.seabird.com/cms-portals/seabird_com/cms/documents/training/Module10_DataAccuracyFieldCals.pdf) \
+viii) The xmlcon files are then edited with corrected slope coeficient and files are reprocessed to obtain corrected salinity profiles.
 
 ### Oxygen (electrochemical sensors)
-3) Correction to oxygen sensor calibration
-i) If SBE oxygen sensor hysteresis response correction was applied in SBE data conversion, compare upcast CTD oxygen sensor data with bottle oxygens. If not, match the down- and upcast data by pressure or neutral or potential density and compare these downcast CTD sensor values with the bottle oxygens. If potential density is used the reference should not be more than 500 dbar from the bottle stops to which it is applied. In low density gradient regions use pressure matching instead. \
-ii) Use data from as many stations as possible to determine a nonlinear fit minimising the squared differences between bottle data and each CTD sensor data. \
-a) Owens and Millard equation ... \
-b) SBE suggested equation ... \
-c) ODF ... \
-d) PMEL ... \
-iii) residuals after calibration should be small (< 2 umol/kg) and randomly distributed as far as station number, pressure, T, and O
-
-### Oxygen (optodes)
-3) Correction to oxygen sensor calibration
-...
-
+SBE43 oxygen values are adjusted with an iterative procedure.
+i) SBE_Oxygen value (O2_SBE43) is calculated based on this equation for each sample where there is a O2_Winkler sample (O2_W). The sum of the square distance between each O2_W and O2_SBE_43 is computed. \
+ii) This sum is then minimised using the evolutionary Excel solver function by adjusting the SOC, Offset and E parameters of the Seabird equation. \
+iii) For each sample, the value of the distance between the O2W and O2SBE43 is computed and any distance greater that +/-2*Sd is removed. \
+iv) The solver function is run again until there are no more distance value greater than +/-2*Sd. It can take several iterations, in this case it took 10 iterations. \
+v) The adjusted SOC, Offset and E value are then used in the xlmcon file to generate the new adjusted profiles
