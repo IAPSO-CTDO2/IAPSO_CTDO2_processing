@@ -3,11 +3,9 @@ ICES WGOH CTD Intercomparison Project: Methodology Document
 (Draft translation from .pdf by YLF, to be edited by KS)
 
 ## A) Data quality control (primary/1QC)
-1) Inspect residuals between two CTD temperatures and two CTD salinities
-2) Inspect residuals between CTD and bottle salinity, use to flag bottle salinity
-3) Inspect residuals between CTD and bottle oxygen, use to flag bottle oxygen
-4) Use ODV to inspect processed (averaged, downcast) data [only after steps in C?] to flag very low salinity (or large sensor-sensor salinity differences) or negative oxygen values. 
-... source document is for post-cruise processing; fill in details for operation/QC on a cruise or othewise ...
+1) After each cast examine differences between primary and secondary sensors over a homogenous part of the water column
+2) Compare CTD C and Oxy to sample data as they become available (use to flag bottle salinity/oxygen)
+3) Suspect sensors with drift over 0.002 °C (T), 0.005 mS/cm (C), 15 umol/kg (O)
 
 ## B) Data processing
 1) SBE Data Conversion (raw to engineering units, outputs scan number, elapsed time, p, t0, t1, c0, c1, oxygen voltage(s), and other [e.g. optical sensor] voltages). Apply oxygen sensor hysteresis and time lag corections using nominal coefficients from SBE to convert oxygen raw (V) to oxygen (ml/l?).  
@@ -20,7 +18,9 @@ ICES WGOH CTD Intercomparison Project: Methodology Document
 8) SBE Bottle Summary
 
 ## C) Data corrections
-
+7) Use ODV to inspect processed (averaged, downcast) data [only after steps in C?] to flag very low salinity (or large sensor-sensor salinity differences) or negative oxygen values. 
+... source document is for post-cruise processing; fill in details for operation/QC on a cruise or othewise ...
+   
 ### Pressure, Temperature, Conductivity
 1) Pressure: no correction
 2) Corrections to T and C calibrations
