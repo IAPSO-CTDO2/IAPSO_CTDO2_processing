@@ -2,7 +2,7 @@
 McTaggart et al., 2010, Notes on CTD/O2 Data Acquisition and Processing Using Sea-Bird Hardware and Software (as available). \
 Uchida et al., 2010, CTD Oxygen Sensor Calibration Procedures. \
 +ICES WGOH CTD Intercomparison Project: Methodology Document
-(Draft translation from .pdf by YLF, to be edited by KS)
+(Draft translation from .pdf by YLF, edited by KS)
 
 ## A) Data quality control (primary/1QC)
 1) After each cast examine differences between primary and secondary sensors over a homogenous part of the water column
@@ -24,9 +24,9 @@ Uchida et al., 2010, CTD Oxygen Sensor Calibration Procedures. \
 ## C) Data corrections
 
 ### Pressure, Temperature, Conductivity
-We use recently calibrated CTD sensors in pair
-No correction on T and P (unless significant difference between the pair of CTD)
-Corrections to C calibrations
+We use recently calibrated CTD sensors in pair \
+No correction on T and P (unless significant difference between the pair of CTD) \
+Corrections to C calibrations \
 i) Use systematic comparisons between sensor data and an independent measure (Autosal water sample salinity) \
 ii) Corrections can potentially vary by cast, but usually should be a very few different sets during the cruise, or slowly evolving with shifts only due to fouling or mechanical shock events \
 iii) Compare and derive adjustments to salinity. Inspect the residuals to identify and flag outliers/bad salinometer values. After excluding these values as well as the top 500 m, for each CTD, calculate a slope as the factor between the sum over samples of CTD x bottle and the sum over samples of CTD x CTD. conductivity (not salinity). the slope coefficient is calculated as : (https://www.seabird.com/cms-portals/seabird_com/cms/documents/training/Module10_DataAccuracyFieldCals.pdf) \
