@@ -11,7 +11,7 @@ ICES WGOH CTD Intercomparison Project: Methodology Document
 1) SBE Data Conversion (raw to engineering units, outputs scan number, elapsed time, p, t0, t1, c0, c1, oxygen voltage(s), and other [e.g. optical sensor] voltages). Include Latitute and Longitude in the selected output variables (are needed for LADCP processing)  
 2) SBE Align CTD, using a 3 second lag for oxygen sensor and optical sensors. 
 3) SBE Cell Thermal Mass using default parameters (0.03 for thermal anomaly amplitude and 7 for thermal anomaly time constant). 
-4) SBE Derive: Compute additional variables like oxygen in µmol/kg and apply hysteresis correction if profiles exceed 1000 m depth.
+4) SBE Derive: Compute additional variables like salinity, potential temperature, density, oxygen saturation, oxygen in µmol/kg and apply hysteresis correction if profiles exceed 1000 m depth.
 5) SBE Bin Average
 6) SBE Split the output of SBE Bin Average into down- and upcast
 7) SBE Data Conversion again with Create file types = create bottle file only
