@@ -11,7 +11,7 @@ ICES WGOH CTD Intercomparison Project: Methodology Document
 1) SBE Data Conversion (raw to engineering units, outputs scan number, elapsed time, p, t0, t1, c0, c1, oxygen voltage(s), and other [e.g. optical sensor] voltages). Apply oxygen sensor hysteresis and time lag corections using nominal coefficients from SBE to convert oxygen raw (V) to oxygen (ml/l?).  
 2) SBE Align CTD, using a 3 second lag for oxygen sensor (or, a lag estimated based on the data?). 
 3) SBE Cell Thermal Mass using default parameters. 
-4) SBE Derive
+4) SBE Derive: Compute additional variables like oxygen in µmol/kg and apply hysteresis correction if profiles exceed 1000 m depth.
 5) SBE Bin Average
 6) SBE Split the output of SBE Bin Average into down- and upcast
 7) SBE Data Conversion again with Create file types = create bottle file only
