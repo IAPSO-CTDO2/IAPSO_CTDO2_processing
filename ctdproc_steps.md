@@ -22,14 +22,13 @@ ICES WGOH CTD Intercomparison Project: Methodology Document
 ## C) Data corrections
 
 ### Pressure, Temperature, Conductivity
-We use recently calibrated CTD sensors in pair (1 calibrated at year n, the other at year n-1)
+We use recently calibrated CTD sensors in pair
 No correction on T and P (unless significant difference between the pair of CTD)
 Corrections to C calibrations
-i) Use systematic comparisons between sensor data and an independent measure (e.g. SBE35, water sample salinity) \
+i) Use systematic comparisons between sensor data and an independent measure (Autosal water sample salinity) \
 ii) Corrections can potentially vary by cast, but usually should be a very few different sets during the cruise, or slowly evolving with shifts only due to fouling or mechanical shock events \
-iii) Over the whole cruise, compare two CTD T sensors, and compare each vs SBE35 data, first as functions of pressure then as functions of time. If mean differences are within the expected accuracy as listed by McTaggart et al., 2010, apply no calibration. \
-iv) Compare and derive adjustments to salinity. Inspect the residuals to identify and flag outliers/bad salinometer values. After excluding these values as well as the top 500 m, for each CTD, calculate a slope as the factor between the sum over samples of CTD x bottle and the sum over samples of CTD x CTD. conductivity (not salinity).  \
-v) Apply to data by modifying the coefficients in the XMLCON file(s) according to these slopes, and re-running steps in B.
+iii) Compare and derive adjustments to salinity. Inspect the residuals to identify and flag outliers/bad salinometer values. After excluding these values as well as the top 500 m, for each CTD, calculate a slope as the factor between the sum over samples of CTD x bottle and the sum over samples of CTD x CTD. conductivity (not salinity). the slope coefficient is calculated as : (https://www.seabird.com/cms-portals/seabird_com/cms/documents/training/Module10_DataAccuracyFieldCals.pdf) \
+iv) The xmlcon files are then edited with corrected slope coeficient and files are reprocessed to obtain corrected salinity profiles (re-running steps in B).
  
 ### Oxygen (electrochemical sensors)
 3) Correction to oxygen sensor calibration
