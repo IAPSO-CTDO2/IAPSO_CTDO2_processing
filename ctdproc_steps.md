@@ -1,5 +1,7 @@
 # Source/version: 
-ICES WGOH CTD Intercomparison Project: Methodology Document
+McTaggart et al., 2010, Notes on CTD/O2 Data Acquisition and Processing Using Sea-Bird Hardware and Software (as available). \
+Uchida et al., 2010, CTD Oxygen Sensor Calibration Procedures. \
++ICES WGOH CTD Intercomparison Project: Methodology Document
 (Draft translation from .pdf by YLF, to be edited by KS)
 
 ## A) Data quality control (primary/1QC)
@@ -31,13 +33,12 @@ iii) Compare and derive adjustments to salinity. Inspect the residuals to identi
 iv) The xmlcon files are then edited with corrected slope coeficient and files are reprocessed to obtain corrected salinity profiles (re-running steps in B).
  
 ### Oxygen (electrochemical sensors)
-3) Correction to oxygen sensor calibration
-i) Convert CTD oxygen to umol/kg (?)\
-ii) For each CTD, compare residuals of Winkler - CTD, as a function of pressure; exclude outlier stations or samples based on inspection (qualitative?)\
-iii) Plot the ratios Winkler/CTD and exclude any additional outlier measurements\
-iv) For each CTD, minimize the residual of the squared differences between Winkler and CTD oxygen by using excel's solver function starting with the SBE default coefficients for SOC (slope), VOffset, and E (pressure correction) [following SBE Application Note AN64-2] to find new coefficients for the conversion from oxygen voltage to engineering units. This may be done for all stations or a group of stations. \
-v) Apply to data by modifying the SOC, VOffset, and E coefficients in XMLCON file(s), and re-running steps in B.
+SBE43 oxygen values are adjusted with an iterative procedure.
+i) SBE_Oxygen value (O2_SBE43) is calculated based on this equation for each sample where there is a O2_Winkler sample (O2_W). The sum of the square distance between each O2_W and O2_SBE_43 is computed. \
+ii) This sum is then minimised using the evolutionary Excel solver function by adjusting the SOC, Offset and E parameters of the Seabird equation. \
+iii) For each sample, the value of the distance between the O2W and O2SBE43 is computed and any distance greater that +/-2*Sd is removed. \
+iv) The solver function is run again until there are no more distance value greater than +/-2*Sd. It can take several iterations, in this case it took 10 iterations. \
+v) The adjusted SOC, Offset and E value are then used in the xlmcon file to generate the new adjusted profiles
+[following SBE Application Note AN64-2] (re-running steps in B).\
 
-7) Use ODV to inspect processed (averaged, downcast) data [only after steps in C?] to flag very low salinity (or large sensor-sensor salinity differences) or negative oxygen values. 
-... source document is for post-cruise processing; fill in details for operation/QC on a cruise or othewise ...
-   Use ODV or similar visualization tools to identify anomalies, particularly in surface layers and regions with strong gradients.
+
