@@ -8,9 +8,9 @@ ICES WGOH CTD Intercomparison Project: Methodology Document
 3) Suspect sensors with drift over 0.002 °C (T), 0.005 mS/cm (C), 15 umol/kg (O)
 
 ## B) Data processing
-1) SBE Data Conversion (raw to engineering units, outputs scan number, elapsed time, p, t0, t1, c0, c1, oxygen voltage(s), and other [e.g. optical sensor] voltages). Apply oxygen sensor hysteresis and time lag corections using nominal coefficients from SBE to convert oxygen raw (V) to oxygen (ml/l?).  
-2) SBE Align CTD, using a 3 second lag for oxygen sensor (or, a lag estimated based on the data?). 
-3) SBE Cell Thermal Mass using default parameters. 
+1) SBE Data Conversion (raw to engineering units, outputs scan number, elapsed time, p, t0, t1, c0, c1, oxygen voltage(s), and other [e.g. optical sensor] voltages). Include Latitute and Longitude in the selected output variables (are needed for LADCP processing)  
+2) SBE Align CTD, using a 3 second lag for oxygen sensor and optical sensors. 
+3) SBE Cell Thermal Mass using default parameters (0.03 for thermal anomaly amplitude and 7 for thermal anomaly time constant). 
 4) SBE Derive: Compute additional variables like oxygen in µmol/kg and apply hysteresis correction if profiles exceed 1000 m depth.
 5) SBE Bin Average
 6) SBE Split the output of SBE Bin Average into down- and upcast
@@ -18,9 +18,7 @@ ICES WGOH CTD Intercomparison Project: Methodology Document
 8) SBE Bottle Summary
 
 ## C) Data corrections
-7) Use ODV to inspect processed (averaged, downcast) data [only after steps in C?] to flag very low salinity (or large sensor-sensor salinity differences) or negative oxygen values. 
-... source document is for post-cruise processing; fill in details for operation/QC on a cruise or othewise ...
-   
+
 ### Pressure, Temperature, Conductivity
 1) Pressure: no correction
 2) Corrections to T and C calibrations
@@ -38,3 +36,6 @@ iii) Plot the ratios Winkler/CTD and exclude any additional outlier measurements
 iv) For each CTD, minimize the residual of the squared differences between Winkler and CTD oxygen by using excel's solver function starting with the SBE default coefficients for SOC (slope), VOffset, and E (pressure correction) [following SBE Application Note AN64-2] to find new coefficients for the conversion from oxygen voltage to engineering units. This may be done for all stations or a group of stations. \
 v) Apply to data by modifying the SOC, VOffset, and E coefficients in XMLCON file(s), and re-running steps in B.
 
+7) Use ODV to inspect processed (averaged, downcast) data [only after steps in C?] to flag very low salinity (or large sensor-sensor salinity differences) or negative oxygen values. 
+... source document is for post-cruise processing; fill in details for operation/QC on a cruise or othewise ...
+   Use ODV or similar visualization tools to identify anomalies, particularly in surface layers and regions with strong gradients.
